@@ -1,10 +1,10 @@
 'use client'
 
 import { BrownButton, MoveButton } from '../button/buttons';
-import IConset from '@/app/common/icon/icon';
 import { useState } from 'react';
 import { useMailAction, useMailStack } from '@/app/store/sendMail.store';
 import { SendMailApi } from '@/app/service/mail/mail.api';
+import { ClipIcon, MapIcon, XIcon } from '@/app/common/icons/icons';
 
 export default function SendMail() {
 
@@ -45,10 +45,10 @@ export default function SendMail() {
                                 </div>
                                 <div className="icons flex text-gray-500 m-2">
                                     <svg className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <IConset.MapIcon />
+                                        <MapIcon />
                                     </svg>
                                     <svg className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <IConset.ClipIcon />
+                                        <ClipIcon />
                                     </svg>
                                     <div className="count ml-auto text-gray-400 text-xs font-semibold">0/300</div>
                                 </div>
@@ -58,7 +58,7 @@ export default function SendMail() {
                             </form >
                         </div>
                     </div>
-                    <button className="bg-white left-[50%] h-[40px] w-[30px] rounded-lg z-5" onClick={() => { setIsOpen(!isOpen), console.log("fff") }} ><IConset.XIcon color="gray" /></button>
+                    <button className="bg-white left-[50%] h-[40px] w-[30px] rounded-lg z-5" onClick={() => { setIsOpen(!isOpen), console.log("fff") }} ><XIcon color="gray" /></button>
                 </div>
                 : <div></div>}
         </div>

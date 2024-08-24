@@ -1,9 +1,10 @@
 
-import IConset from "@/app/common/icon/icon";
+import { ChevronLeftICon, ChevronRightICon } from "@/app/common/icons/arrowIcon";
 import { useState } from "react";
 
 
-const Pagination = ({ total, limit, page, setPage }: any) => {
+
+export default function Pagination ({ total, limit, page, setPage }: any) {
     const [btnActive, setBtnActive] = useState('');
     const numPages = Math.ceil(total / limit);
 
@@ -16,7 +17,7 @@ const Pagination = ({ total, limit, page, setPage }: any) => {
         <>
             <div className="flex bg-pebble-200 text-white rounded-full">
                 <button onClick={() => {setPage(page - 1), setBtnActive(page)}} disabled={page === 1} className="w-[40px] px-2 hover:backdrop-brightness-125 rounded-l-full">
-                    <IConset.ChevronLeftICon /> 
+                    <ChevronLeftICon /> 
                 </button>
                 {Array.from({ length: numPages }, (v: any, i: any) =>
                     <div key={i + 1} className="flex content-center items-center">
@@ -31,11 +32,9 @@ const Pagination = ({ total, limit, page, setPage }: any) => {
                     </div>
                 )}
                 <button onClick={() => {setPage(page + 1), setBtnActive(page+1)} } disabled={page === numPages} className="w-[40px] px-2 hover:backdrop-brightness-125 rounded-r-full">
-                    <IConset.ChevronRightICon />
+                    <ChevronRightICon />
                 </button>
             </div >
         </>
     );
 };
-
-export default Pagination

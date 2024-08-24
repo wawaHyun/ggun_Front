@@ -1,7 +1,7 @@
 "use client"
 import { characterInfo } from "@/app/common/enums/character";
 import { useInterval } from "@/app/common/hook/useInterval";
-import IConset from "@/app/common/icon/icon";
+import { ChartIcon } from "@/app/common/icons/icons";
 import { TabButton } from "@/app/component/button/tabButton";
 import Image from "next/image"
 import { useState } from "react";
@@ -40,7 +40,7 @@ export default function CharacterPage() {
                     </div>
                     <div className="p-5 border border-t-0" >
                         <div className="w-full h-full space-y-5">
-                            {/* <div className="justify-center flex"><IConset.ChartIcon style={`${characterInfo[btn].color}`} /></div> */}
+                            <div className="justify-center flex"><ChartIcon style={`${characterInfo[btn].color}`} /></div>
                             <div className={`text-xl bold`}>{characterInfo[btn].title}</div>
                             <div className="border"></div>
                             <div>{landingTitle}</div>

@@ -38,7 +38,9 @@ export default function LoginBox () {
         Swal.fire({
             icon: "error",
             title: "error",
-            html: `권한 담당자에게 연락 부탁드립니다.<br>담당자 : 인사팀 김현주<br>Tel : 2046`,
+            html: '권한 담당자에게 연락 부탁드립니다.<br/><br/>'+
+            `담당자 : 인사팀 김현주 Tel : 2046 <br/><br/>`+
+            'ggunuser0001 pO2(eO73)%@'
           });
     }
 

@@ -6,7 +6,7 @@ export const RoomlistDummy:IChatRoom[] = [
     { id: '4', members: "권상무", title: "강아지 이름 정했는데 어케 생각해요?"},
 ]
 
-export const stockCommunDummy:IStockArticle[] = [
+export const stockCommunDummy:IItemArticle[] = [
     { id: 1,writerId: '주친자', title: '그러고보니 오늘 뉴스', content: '뉴스 최상단에 떴던데 기대해볼만함', date: '24-06-21' },
     { id: 2,writerId: '따따따따따블', title: '상한가 가능한가요?', content: '경제지표가 엉망인데 털고 떠야 하는지 물타야 하는지ㅠ', date: '24-06-21' },
     { id: 3,writerId: '박정연', title: 'ㅋㅋㅋ', content: '믿음 믿음만이 구원 아멘', date: '24-06-21' },

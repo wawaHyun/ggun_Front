@@ -22,7 +22,8 @@ export async function fetchNews(): Promise<INews[] | { status: number }> {
         // console.log("News list api data : ", data);
 
         if (res.length === 0) {
-            return { status: 404 };
+            // return { status: 404 };
+            return newsDummy;
         }
 
         return res;

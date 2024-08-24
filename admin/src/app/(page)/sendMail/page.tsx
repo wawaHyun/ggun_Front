@@ -2,17 +2,15 @@
 
 import { BrownButton, MoveButton } from '@/app/common/button/MoveButton';
 import { useState } from 'react';
-import { ClipIcon, MapIcon, XIcon } from '@/app/common/icons/icons';
+import { XIcon } from '@/app/common/icons/icons';
 import { WhiteLink } from '@/app/common/link/whiteLink';
 import { SendMailApi } from '@/app/service/mail/mail.api';
 import { useMailAction, useMailStack } from '@/app/store/sendMail.store';
-import { useRouter } from 'next/navigation';
 import Swal from 'sweetalert2';
 
 export default function SendMail() {
 
   let [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();
 
   const inputMail = useMailAction();
   const mail = useMailStack();
@@ -55,19 +53,9 @@ export default function SendMail() {
 
                 <div className='space-y-2'>
                   <input className="" placeholder='회신받을 이메일' name='email' type="eamil" onChange={handleMail} />
-                  {/* <input className="" placeholder="Title" type="text" name='subject' onChange={handleMail}/> */}
                   <textarea className="h-[200px] w-full border-2 rounded-lg" placeholder="Describe everything about this post here" name='message' onChange={handleMail} />
                 </div>
                 <div className="icons flex text-gray-500 m-2">
-                  {/* <svg className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <MapIcon />
-                  </svg>
-                  <label htmlFor="input-file" id="input-file" >
-                    <svg className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <ClipIcon />
-                    </svg>
-                  </label>
-                  <input type="file" id="input-file" name="input-file" accept='.zip' className='invisable' /> */}
                   <div className="count ml-auto text-gray-400 text-xs font-semibold">{mail.message.length}/300</div>
                 </div>
                 <div className="buttons flex gap-5 justify-center h-[50px]">

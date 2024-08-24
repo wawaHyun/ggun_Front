@@ -5,12 +5,10 @@ import NewsHeader from "../../component/navigation/newsHeader";
 import Link from "next/link";
 import { Suspense } from 'react';
 import { useNews } from '@/app/hooks/news.hook';
-import { newsDummy } from '@/app/common/dummy/news.dummy';
 
 export default function NewsPage() {
 
-  // const { data: news } = useNews();
-  const news = newsDummy;
+  const { data: news } = useNews();
 
   return (
     <div className="h-full w-full">
@@ -39,7 +37,7 @@ export default function NewsPage() {
                 <Image unoptimized src={v.imgSrc} height={150} width={300} alt={v.title} className="rounded-t-lg" />
               </li>
               <li className="p-2 h-[30%] truncate">{v.title}</li>
-              <li className="text-left text-gray-400 h-[10%]">{i.id}분전</li>
+              <li className="text-left text-gray-400 h-[10%]">{i+1}분전</li>
             </ul>
             : <div key={v.id}></div>
           )}

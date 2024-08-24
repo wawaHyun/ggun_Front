@@ -4,4 +4,6 @@ interface IItemArticle {
     content?: string,
     writerId? : string,
     stockBoards? : string,
+
+    date? : string,
 }

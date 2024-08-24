@@ -82,7 +82,6 @@ export default function ChatRoom() {
 
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputMessage, setInputMessage] = useState<string>('');
-    const [inputMessage2, setInputMessage2] = useState<string>('');
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
     const [tempIdCounter, setTempIdCounter] = useState<number>(1);
 

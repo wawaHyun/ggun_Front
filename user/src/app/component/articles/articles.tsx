@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation"
 import { BrownLink } from "../link/brawnLink";
 import Pagination from "../navigation/pagination";
 import { useState } from "react";
-import IConset from "@/app/common/icon/icon";
+import { ClipIcon } from "@/app/common/icons/icons";
 
 export default function Articles({ prop }: { prop: string }) {
 
@@ -42,8 +42,7 @@ export default function Articles({ prop }: { prop: string }) {
                             <td>{v.id}</td>
                             <td>{v.title}</td>
                             <td>{v.content}</td>
-                            <td className="flex justify-center">{Number(v.id) >= 86 ?   <div ><IConset.ClipIcon /></div> : ''}</td>
-                           
+                            <td className="flex justify-center">{Number(v.id) >= 86 ?   <div ><ClipIcon /></div> : ''}</td>
                             <td>{v.modDate}</td>
                         </tr>
                     )

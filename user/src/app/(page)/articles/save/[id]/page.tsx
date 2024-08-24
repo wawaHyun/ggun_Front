@@ -5,9 +5,9 @@ import { saveArticle } from '@/app/service/articles/articles.api';
 import { useArticleAction, useArticleStack } from '@/app/store/articles.store';
 import { WhiteBox } from '@/app/component/style/whiteBox';
 import { MoveButton } from '@/app/component/button/buttons';
-import IConset from '@/app/common/icon/icon';
 import { uploadFiles } from '@/app/service/articles/file.api';
 import { useState } from 'react';
+import { ClipIcon, MapIcon } from '@/app/common/icons/icons';
 
 
 export default function ArticleSave({ params }: { params: { id: number } }) {
@@ -54,10 +54,10 @@ export default function ArticleSave({ params }: { params: { id: number } }) {
             </div>
             <div className="icons flex text-gray-500 m-2">
               <svg className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <IConset.MapIcon />
+                <MapIcon />
               </svg>
               <svg className="mr-2 cursor-pointer hover:text-gray-700 border rounded-full p-1 h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <IConset.ClipIcon />
+                <ClipIcon />
               </svg>
               <input type="file" id="input-file" name="inputFile" accept='' className='invisable' onChange={handlefiles} />
               <div className="count ml-auto text-gray-400 text-xs font-semibold">{article.content?.length}/300</div>

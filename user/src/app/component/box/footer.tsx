@@ -1,4 +1,5 @@
-import IConset from "@/app/common/icon/icon";
+
+import { FacebookIcon, InstaIcon, TwitterIcon } from "@/app/common/icons/icons";
 
 
 
@@ -33,9 +34,9 @@ function Footer() {
                 </ul>
             </div>
             <div className="w-[20%] flex gap-2">
-                <IConset.FacebookIcon color="white"/>
-                <IConset.TwitterIcon color="white"/>
-                <IConset.InstaIcon color="white"/>
+                <FacebookIcon color="white"/>
+                <TwitterIcon color="white"/>
+                <InstaIcon color="white"/>
             </div>
         </div>
     )

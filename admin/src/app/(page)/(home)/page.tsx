@@ -10,6 +10,5 @@ export default function Home() {
         {isLoggedIn == true ?
             <div><Dashboard /> </div>
             :   <div><BeforeHome /> </div> }
-              {/* <div><Dashboard /> </div> */}
     </>)
 }

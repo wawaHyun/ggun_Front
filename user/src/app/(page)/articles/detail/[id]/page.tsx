@@ -2,11 +2,11 @@
 
 import { WhiteBox } from '@/app/component/style/whiteBox';
 import Link from 'next/link';
-import IConset from '@/app/common/icon/icon';
 import Image from 'next/image';
 import { MoveButton } from '@/app/component/button/buttons';
 import { useArticleDetail } from '@/app/hooks/article.hook';
 import { useState } from 'react';
+import { ClipIcon, MapIcon } from '@/app/common/icons/icons';
 
 export default function ArticleDetail({ params }: { params: { id: string } }) {
 
@@ -32,9 +32,9 @@ export default function ArticleDetail({ params }: { params: { id: string } }) {
 
           </div>
           <div className="icons flex text-gray-500 gap-3 cursor-point mb-5">
-            <IConset.MapIcon />
+            <MapIcon />
             <span className="hover:toolkit flex gap-4 group">
-              <IConset.ClipIcon />
+              <ClipIcon />
               {files == false ?
               <span className='invisible group-hover:visible rounded-lg p-1 px-3 bg-pebble-400'>첨부파일이 없습니다.</span>
               :
