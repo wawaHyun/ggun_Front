@@ -41,7 +41,7 @@ export default function BeforeHome() {
         </div>
 
         <div className="w-full h-[70px] my-[30px] "><FirstMenu /></div>
-        <div className="my-5 border">
+        <div className="my-5 border h-[500px]">
         </div>
       </div>
     </main>
