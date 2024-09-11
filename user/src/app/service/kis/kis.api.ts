@@ -3,8 +3,7 @@
 import ThirtyDaysAgo from "@/app/common/date/thirtyDaysAgo";
 import Today from "@/app/common/date/today";
 import { cookies } from "next/headers";
-import { kisHeaders } from "../header/kisHeader";
-import { extractCookie } from "@/app/component/util/extractToken";
+import { getKisHeaders } from "../header/kisHeader";
 
 export async function fetchKisAuth(): Promise<string | { status: number }> {
     const url = `${process.env.KIS_DEV_API_BASE_URL}${process.env.KIS_DEV_API_AUTH2}`
@@ -12,7 +11,7 @@ export async function fetchKisAuth(): Promise<string | { status: number }> {
         const response = await fetch(url
             , {
                 method: 'POST',
-                headers: {},
+                headers: { 'Content-Type': 'application/json', },
                 body: JSON.stringify({
                     grant_type: 'client_credentials',
                     appkey: process.env.KIS_DEV_API_KEY,
@@ -22,22 +21,20 @@ export async function fetchKisAuth(): Promise<string | { status: number }> {
         );
 
         if (!response.ok) { throw new Error('API Network response was not ok'); }
+        const data: any = await response.json();
 
-
-        if (response.ok) {
-            const kisToken = response.headers.getSetCookie()[0];
+        if (data) {
             cookies().set({
                 name: 'kisToken',
-                value: extractCookie(kisToken, 'kisToken'),
+                value: data.access_token,
                 path: '/',
-                maxAge: Number(extractCookie(kisToken, 'Max-Age')),
-                expires: new Date(extractCookie(kisToken, 'Expires')),
+                maxAge: data.expires_in,
+                expires: new Date(data.access_token_token_expired),
                 sameSite: 'lax',
                 httpOnly: true,
             });
         }
-        const data: any = await response.json();
-        console.log("KIS fetchKisAuth api cookie update : ", cookies().get('kisToken'));
+        // console.log("KIS fetchKisAuth api cookie update : ", cookies().get('kisToken')?.value);
         return data;
 
     } catch (error) {
@@ -59,6 +56,10 @@ export async function fetchKisSection(props: number): Promise<IKisSection | { st
 
     const url = `${process.env.KIS_DEV_API_BASE_URL}${process.env.KIS_DEV_API_SECTION}?${query}`
     try {
+        const kisHeaders = await getKisHeaders();
+        if ((kisHeaders as Record<string, string>).authorization == null)
+            console.log('Authorization 값이 없습니다. : ');
+
         const response = await fetch(url
             , {
                 method: 'GET',
@@ -88,7 +89,7 @@ export async function fetchKisAskingprice(stockCode: string): Promise<IKisAskPri
     })
 
     const url = `${process.env.KIS_DEV_API_BASE_URL}${process.env.KIS_DEV_API_TRADE}?${query}`
-
+    const kisHeaders = await getKisHeaders();
     try {
         const response = await fetch(url
             , {
@@ -123,7 +124,7 @@ export async function fetchKisDailyPrice(stockCode: string): Promise<IKisDaily |
     })
 
     const url = `${process.env.KIS_DEV_API_BASE_URL}${process.env.KIS_DEV_API_DAILYPRICE}?${query}`
-
+    const kisHeaders = await getKisHeaders();
     try {
         const response = await fetch(url
             , {
@@ -153,7 +154,7 @@ export async function fetchKisNow(stockCode: string): Promise<IKisNow | { status
     })
 
     const url = `${process.env.KIS_DEV_API_BASE_URL}${process.env.KIS_DEV_API_NOW}?${query}`
-
+    const kisHeaders = await getKisHeaders();
     try {
         const response = await fetch(url
             , {

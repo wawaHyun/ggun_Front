@@ -1,11 +1,19 @@
 import { cookies } from "next/headers";
 import { fetchKisAuth } from "../kis/kis.api";
 
-const kisAuthToken = cookies().get('kisToken')?.value == null ? fetchKisAuth().then((res:any)=>cookies().get('kisToken')?.value) : cookies().get('kisToken')?.value;
+async function ensureKisToken() {
+    while (cookies().get('kisToken')?.value == null) {
+        await fetchKisAuth();
+    }
+}
 
-export const kisHeaders: HeadersInit = {
-    'content-type': 'application/json',
-    'authorization': 'Bearer ' + kisAuthToken,
-    'appkey': process.env.KIS_DEV_API_KEY || '',
-    'appsecret': process.env.KIS_DEV_API_SECERET || '',
-};
+
+export async function getKisHeaders(): Promise<HeadersInit> {
+    await ensureKisToken();
+    
+    return {
+        'authorization': 'Bearer ' + cookies().get('kisToken')?.value,
+        'appkey': process.env.KIS_DEV_API_KEY || '',
+        'appsecret': process.env.KIS_DEV_API_SECERET || '',
+    };
+}

@@ -30,18 +30,18 @@ export default function CharacterPage() {
                 <div className="w-full justify-center flex">
                     <Image src={"/imgs/character2.jpg"} alt={"character"} width={700} height={500} priority></Image>
                 </div>
-                <div className=" shadow-lg rounded-lg ">
+                <div className=" shadow-lg rounded-lg mb-[50px]">
                     <div className="h-[50px] grid grid-cols-5">
                         <TabButton click={() => { setBtn(0), setLandingTitle(''), setCount(0) }} select={btn == 0} >RED</TabButton>
                         <TabButton click={() => { setBtn(1), setLandingTitle(''), setCount(0) }} select={btn == 1} >YELLOW</TabButton>
                         <TabButton click={() => { setBtn(2), setLandingTitle(''), setCount(0) }} select={btn == 2} >PURPLE</TabButton>
-                        <TabButton click={() => { setBtn(3), setLandingTitle(''), setCount(0) }} select={btn == 3} >BlUE</TabButton>
+                        <TabButton click={() => { setBtn(3), setLandingTitle(''), setCount(0) }} select={btn == 3} >BLUE</TabButton>
                         <TabButton click={() => { setBtn(4), setLandingTitle(''), setCount(0) }} select={btn == 4} >GREEN</TabButton>
                     </div>
-                    <div className="p-5 border border-t-0" >
+                    <div className="p-5 border border-t-0 rounded-lg min-h-[300px]" >
                         <div className="w-full h-full space-y-5">
-                            <div className="justify-center flex"><ChartIcon style={`${characterInfo[btn].color}`} /></div>
-                            <div className={`text-xl bold`}>{characterInfo[btn].title}</div>
+                            <div className="justify-center flex"><ChartIcon color={`${characterInfo[btn].color}`}/></div>
+                            <div className={`text-2xl bold text-center ${characterInfo[btn].color}`}>{characterInfo[btn].title}</div>
                             <div className="border"></div>
                             <div>{landingTitle}</div>
                         </div>
