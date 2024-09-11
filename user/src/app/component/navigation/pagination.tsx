@@ -1,5 +1,5 @@
 
-import { ChevronLeftICon, ChevronRightICon } from "@/app/common/icons/arrowIcon";
+import { ChevronLeftICon, ChevronRightICon } from "@/app/common/icons/pageIcon";
 import { useState } from "react";
 
 
