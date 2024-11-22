@@ -32,7 +32,7 @@ export async function authUserP(user: IUser): Promise<boolean | { status: number
             data: {
                 username: dummydata.username + '',
                 password: dummydata.password + '',
-                // name: user.name,
+                name: user.name,
                 // email: user.email,
                 // ssnF: user.ssnF,
                 // ssnS: user.ssnS,
