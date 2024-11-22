@@ -6,6 +6,8 @@ import OAuth from "./oAuth";
 import { useRouter } from "next/navigation";
 import { useLoginAction, useLoginStack } from "@/app/store/login.store";
 import { loginUser } from "@/app/service/users/users.api";
+import { existUserP, loginUserP } from "@/app/api/user/route";
+import Swal from "sweetalert2";
 
 export default function IdLoginBox() {
 
@@ -29,35 +31,59 @@ export default function IdLoginBox() {
 
 
     const handlePassword = (e: any) => {
-        const PW_CHECK =  /^[a-zA-Z][a-zA-Z0-9]{5,11}$/g;
+        const PW_CHECK = /^[a-zA-Z][a-zA-Z0-9]{5,11}$/g;
         PW_CHECK.test(userInfo.password + "") ? setIsWrongPw('false') : setIsWrongPw('true');
         userSubmit({ ...userInfo, password: e.target.value });
         // console.log('password : ' + JSON.stringify(userInfo))
     }
 
     const forgetPw = () => {
-        console.log("forgetPw")
-        alert('권한 담당자에게 연락 부탁드립니다.\n' +
-            '담당자 : 인사팀 김현주\n' +
-            'Tel : 2046')
+        Swal.fire({
+            icon: 'info',
+            title: '문의',
+            text: '권한 담당자에게 연락 부탁드립니다.\n 담당자 : 인사팀 김현주\nTel : 2046',
+        })
     }
 
-    const loginApi = async () => await loginUser(userInfo)
-    
-    const handleSubmit = () => {
-        console.log('login page 입력받은 내용 ' + JSON.stringify(userInfo))
-        loginApi()
-            .then((res: boolean | { status: number; }) => {
-                res === true ? router.push(`/`) : setMsg("로그인실패")
-            })
-            .catch((error) => {
-                console.log("login page err: ", error)
-            })
+    const loginApi = async () => await loginUserP(userInfo)
+    const existApi = async () => await existUserP(userInfo.username + '')
 
-        if (ref.current) {
-            ref.current.value = "";
-            userSubmit({ ...userInfo, password: '' });
-        }
+    const handleSubmit = () => {
+        existApi()
+            .then((res: boolean | { status: number; }) => {
+                if (res == false) {
+                    setMsg("로그인 실패")
+                    Swal.fire({
+                        icon: "warning",
+                        title: "로그인 실패",
+                        text: "없는 아이디입니다.\n다시 한번 시도해주세요.",
+                        showCancelButton: true,
+                        confirmButtonColor: '',
+                        cancelButtonColor: 'red',
+
+                        confirmButtonText: '로그인',
+                        cancelButtonText: '회원가입'
+                    })
+                        .then((result) => {
+                            if (result.isConfirmed != true) {
+                                router.push('/join')
+                            }
+                        })
+                } else if (res == true) {
+                    loginApi()
+                        .then((res: boolean | { status: number; }) => {
+                            res === true ? router.push(`/`) : setMsg("비밀번호가 맞지 않습니다")
+                        })
+
+                    if (ref.current) {
+                        ref.current.value = "";
+                        userSubmit({ ...userInfo, password: '' });
+                    }
+                } else {
+                    setMsg("로그인 오류")
+                }
+
+            })
     }
 
     return (
@@ -69,7 +95,7 @@ export default function IdLoginBox() {
                     <div className="text-slate-500 text-center">주문/뱅킹/서비스 신청 등 모든 거래가 가능합니다.</div>
                 </div>
                 <label className="block text-gray-700 text-sm font-bold mb-2">
-                    ID : 
+                    ID :
                 </label>
                 <input type="text" name="username" onChange={handleUsername} required />
 
@@ -85,7 +111,7 @@ export default function IdLoginBox() {
             <div className="mt-4 flex flex-col justify-between">
                 <div className="flex justify-between">
                     <label className="block text-gray-700 text-sm font-bold mb-2">
-                        Password : 
+                        Password :
                     </label>
                 </div>
                 <input type="password" name="password" onChange={handlePassword} ref={ref} />

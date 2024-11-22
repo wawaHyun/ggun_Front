@@ -10,6 +10,7 @@ interface IUser {
     phone?: string,
     color?: string,
     investmentPropensity?: string
+    token?: string,
 }
 
 interface IAuthToken {

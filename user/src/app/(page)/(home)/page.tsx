@@ -7,8 +7,9 @@ export default function Home() {
     const isLoggedIn = Boolean(cookies().get('accessToken')?.value);
 
     return(<>
-        {isLoggedIn == true ?
+     <div><BeforeHome /> </div> 
+        {/* {isLoggedIn == true ?
             <div><AfterHome /> </div>
-            :   <div><BeforeHome /> </div> }
+            :   <div><BeforeHome /> </div> } */}
     </>)
 }

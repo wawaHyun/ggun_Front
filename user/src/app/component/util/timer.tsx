@@ -27,7 +27,6 @@ export default function Timer() {
         confirmButtonText: '로그아웃',
         cancelButtonText: '로그인 연장',
         reverseButtons: true,
-  
       }).then((result) => {
         if (result.isDenied) {
           Swal.fire(
