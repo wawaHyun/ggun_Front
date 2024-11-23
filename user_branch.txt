@@ -1,0 +1,14 @@
+https://github.com/wawaHyun/ggun_Front
+
+branch
+
+Main
+
+Dev-1
+	: 240912 446 박제.
+	: 비트캠프 꾼팀에서 했던거 그대로.
+	: front, back 나뉘어져 있음
+	: java spring back + zustand + react query 사용.
+
+Dev-2
+	: prisma 용. 

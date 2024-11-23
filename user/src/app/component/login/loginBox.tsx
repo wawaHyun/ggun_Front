@@ -51,7 +51,7 @@ export default function IdLoginBox() {
     const handleSubmit = () => {
         existApi()
             .then((res: boolean | { status: number; }) => {
-                if (res == false) {
+                if (typeof res === 'boolean' && res === false) {
                     setMsg("로그인 실패")
                     Swal.fire({
                         icon: "warning",
@@ -69,7 +69,8 @@ export default function IdLoginBox() {
                                 router.push('/join')
                             }
                         })
-                } else if (res == true) {
+                } else if (typeof res === 'boolean' && res === true) {
+                    console.log("login in")
                     loginApi()
                         .then((res: boolean | { status: number; }) => {
                             res === true ? router.push(`/`) : setMsg("비밀번호가 맞지 않습니다")

@@ -11,12 +11,12 @@ export async function existUserP(username: string): Promise<boolean | { status: 
             where: { username: username },
         })
             .then((res: any) => {
-                result = (res != true) ? true : false
-                console.log("ExistAdminAPI result : " + result);
+                result = (res.username == username) ? true : false
             })
-            .catch((err:any)=>{
-                if(err==PrismaClientKnownRequestError) return result= false;
+            .catch((err: any) => {
+                if (err == PrismaClientKnownRequestError) return result = false;
             })
+        // console.log("ExistAdminAPI " + username + " result : " + result);
         return result;
     } catch (error) {
         console.log("existUserP err : " + error);
@@ -25,13 +25,11 @@ export async function existUserP(username: string): Promise<boolean | { status: 
 }
 
 export async function authUserP(user: IUser): Promise<boolean | { status: number }> {
-    const dummydata = {username:'jjj', password:'jjd'}
-    console.log("authUserP data : " + dummydata.username + " "+dummydata.password);
     try {
         const response = await client.users.create({
             data: {
-                username: dummydata.username + '',
-                password: dummydata.password + '',
+                username: user.username + '',
+                password: user.password + '',
                 name: user.name,
                 // email: user.email,
                 // ssnF: user.ssnF,
@@ -39,8 +37,7 @@ export async function authUserP(user: IUser): Promise<boolean | { status: number
                 // address: user.address,
             },
         });
-        console.log("authUserP data : " + user.username + " "+user.password)
-        console.log("authUserP response: " + response)
+        // console.log("authUserP response: " + response)
 
         return true
     } catch (error) {
