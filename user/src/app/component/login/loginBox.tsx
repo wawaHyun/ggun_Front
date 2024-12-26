@@ -6,7 +6,7 @@ import OAuth from "./oAuth";
 import { useRouter } from "next/navigation";
 import { useLoginAction, useLoginStack } from "@/app/store/login.store";
 import { loginUser } from "@/app/service/users/users.api";
-import { existUserP, loginUserP } from "@/app/api/user/route";
+import { existUserP, loginUserP } from "@/app/api/user/user.route";
 import Swal from "sweetalert2";
 
 export default function IdLoginBox() {

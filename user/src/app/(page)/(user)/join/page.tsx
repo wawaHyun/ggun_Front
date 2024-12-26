@@ -8,7 +8,7 @@ import { characterInfo } from '@/app/common/enums/character';
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { joinUser } from "@/app/service/users/users.api";
-import { authUserP, existUserP } from "@/app/api/user/route";
+import { authUserP, existUserP } from "@/app/api/user/user.route";
 
 function UserJoin() {
 

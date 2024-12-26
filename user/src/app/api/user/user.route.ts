@@ -6,7 +6,7 @@ import client from "../../../../_lib/prisma/db";
 
 export async function existUserP(username: string): Promise<boolean | { status: number }> {
     try {
-        var result = false;
+        var result:boolean = false;
         await client.users.findUnique({
             where: { username: username },
         })
